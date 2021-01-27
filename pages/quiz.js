@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
@@ -54,8 +55,8 @@ function QuestionWidget({
         </p>
 
         <form
-          onSubmit={(infosDoEvento) => {
-            infosDoEvento.preventDefault();
+          onSubmit={(event) => {
+            event.preventDefault();
             onSubmit();
           }}
         >
@@ -94,6 +95,7 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
+
 export default function QuizPage() {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const totalQuestions = db.questions.length;
@@ -103,13 +105,14 @@ export default function QuizPage() {
 
   // [React chama de: Efeitos || Effects]
   // React.useEffect
+  // nasce === didMount
   // atualizado === willUpdate
   // morre === willUnmount
   React.useEffect(() => {
     // fetch() ...
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 1 * 1500);
   // nasce === didMount
   }, []);
 
@@ -137,7 +140,7 @@ export default function QuizPage() {
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <div>Você acertou X questões, parabéns!</div>}
+        {screenState === screenStates.RESULT && <div>You succeeded X questions, Congrats!</div>}
       </QuizContainer>
     </QuizBackground>
   );
