@@ -10,6 +10,7 @@ import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 // const Title = styled.h1`
 //   font-size: 50px;
@@ -73,20 +74,14 @@ export default function Home() {
             }}
             >
               <Input
-                name="userName"
-                onChange={ (event) => {
-                  // eslint-disable-next-line no-console
-                  // console.log(event.target.value);
-                  // State
-                  // name = infosDoEvento.target.value;
-                  setName(event.target.value);
-                }
+                name="nomeDoUsuario"
+                onChange={(event) => setName(event.target.value)}
                 placeholder="Diz ai seu nome"
+                value={name}
               />
-              <button type="submit" disabled={name.length < 2}>
-                Play the quiz
-                {name}
-              </button>
+              <Button type="submit" disabled={name.length === 0}>
+                {`Play it ${name}`}
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
